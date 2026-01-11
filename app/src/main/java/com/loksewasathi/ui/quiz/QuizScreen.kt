@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 import com.loksewasathi.repository.QuestionRepository
 import com.loksewasathi.repository.ProgressRepository
 import com.loksewasathi.ui.theme.CorrectGreen
@@ -44,6 +45,14 @@ fun QuizScreen(
     
     val state by viewModel.state.collectAsState()
     val topic = Constants.getTopicById(topicId)
+    
+    // Auto-advance to next question after showing feedback
+    LaunchedEffect(state.isAnswerSubmitted) {
+        if (state.isAnswerSubmitted) {
+            delay(1500) // Show feedback for 1.5 seconds
+            viewModel.nextQuestion()
+        }
+    }
     
     LaunchedEffect(state.quizResult) {
         if (state.quizResult != null) {
@@ -147,39 +156,18 @@ fun QuizScreen(
                                 isSelected = state.selectedAnswer == optionKey,
                                 isCorrect = currentQuestion.correctAnswer == optionKey,
                                 isAnswerSubmitted = state.isAnswerSubmitted,
-                                onClick = { viewModel.selectAnswer(optionKey) }
+                                onClick = {
+                                    if (!state.isAnswerSubmitted) {
+                                        viewModel.selectAnswer(optionKey)
+                                        viewModel.submitAnswer() // Auto-submit immediately
+                                    }
+                                }
                             )
                         }
                     }
                     
-                    Spacer(modifier = Modifier.height(24.dp))
                     
-                    // Submit/Next Button
-                    Button(
-                        onClick = {
-                            if (state.isAnswerSubmitted) {
-                                viewModel.nextQuestion()
-                            } else {
-                                viewModel.submitAnswer()
-                            }
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(56.dp),
-                        enabled = state.selectedAnswer != null,
-                        shape = RoundedCornerShape(16.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = PrimaryPurple
-                        )
-                    ) {
-                        Text(
-                            text = if (state.isAnswerSubmitted) {
-                                if (state.currentQuestionIndex == state.questions.size - 1) "Finish" else "Next"
-                            } else "Submit",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
+                    Spacer(modifier = Modifier.height(24.dp))
                 }
             }
         }
