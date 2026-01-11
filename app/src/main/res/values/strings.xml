@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Loksewa Sathi</string>
+    <string name="app_name_nepali">लोकसेवा साथी</string>
+    <string name="tagline">Your GK Companion</string>
+    
+    <!-- Dashboard -->
+    <string name="select_topic">Select Topic</string>
+    <string name="questions">Questions</string>
+    <string name="correct">Correct</string>
+    <string name="accuracy">Accuracy</string>
+    
+    <!-- Quiz -->
+    <string name="question">Question</string>
+    <string name="submit">Submit</string>
+    <string name="next">Next</string>
+    <string name="finish">Finish</string>
+    
+    <!-- Result -->
+    <string name="congratulations">Congratulations!</string>
+    <string name="quiz_completed">Quiz Completed</string>
+    <string name="quiz_summary">Quiz Summary</string>
+    <string name="score">Score</string>
+    <string name="correct_answers">Correct Answers</string>
+    <string name="incorrect_answers">Incorrect Answers</string>
+    <string name="time_taken">Time Taken</string>
+    <string name="review_answers">Review Answers</string>
+    <string name="retry">Retry</string>
+    <string name="home">Home</string>
+    
+    <!-- Review -->
+    <string name="your_answer">Your Answer</string>
+    <string name="correct_answer">Correct Answer</string>
+</resources>

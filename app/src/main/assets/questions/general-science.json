@@ -1,0 +1,23 @@
+﻿{
+    "meta": {
+        "title": "Sample Questions",
+        "language": "ne",
+        "source": "Sample Data",
+        "version": "1.0",
+        "count": 5
+    },
+    "questions": [
+        {
+            "id": "sample_001",
+            "topic": "समनय जञन",
+            "question": "य नमन परशन ह कपय यस वषयक लग वसतवक परशनहर थपनहस",
+            "options": {
+                "A": "वकलप A",
+                "B": "वकलप B",
+                "C": "वकलप C",
+                "D": "वकलप D"
+            },
+            "correctAnswer": "A"
+        }
+    ]
+}
